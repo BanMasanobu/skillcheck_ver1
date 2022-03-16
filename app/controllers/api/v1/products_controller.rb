@@ -5,7 +5,7 @@ module Api
     # procuct api
     class ProductsController < ApplicationController
       def index
-        @products = Product.includes(:variants).order(created_at: :desc)
+        @products = Product.includes(:variants).new_first
         product_json = @products.collect do |product|
           JsonV1::Product.generate(product)
         end
